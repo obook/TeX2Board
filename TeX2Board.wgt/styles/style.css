@@ -1,0 +1,36 @@
+/*
+ * 
+ * index.css for TexBoard
+ * (C) oboklage 2022
+ * 
+ */
+
+body {
+  background-color: #fff;
+  overflow: hidden; /* Hide scrollbars */
+} 
+
+input[type="text"], textarea {
+  background-color : #ddd; 
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-gap: 10px;
+}
+
+.cellMathInput {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 150%;
+}
+
+.cellMathOutput {
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 150%;
+}

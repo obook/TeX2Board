@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<!--
+Original code : http://www.mit.edu/afs.new/sipb/project/mathjax/mathjax-git/docs/html/typeset.html
+
+-->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>TeX2Board</title>
+        <script type="text/javascript" src="scripts/index.js"></script>
+        <!-- Mathjax -->
+        <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            inlineMath: [["$","$"],["\\(","\\)"]]
+            }
+        });
+        </script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <link rel="stylesheet" type="text/css" href="styles/style.css">
+    </head>
+    <body>
+        <div class="wrapper">
+
+            <div class="cellMathOutput"><span id="MathOutput">out</span></div>
+
+            <div class="cellMathInput">
+                <form name="sourcecodeform">
+                    <textarea id="MathInput" rows = "5" cols = "50"></textarea>
+                </form>
+            </div>
+            <div>
+                <input type="button" id="MakeLaTeXButton" onclick="MakeLaTeX()" value="TeX"/><input type="button" id='HideShowButton' onclick="HideShowButton()" value="Hide"/>
+            </div>
+        </div>
+    </body>
+</html>
