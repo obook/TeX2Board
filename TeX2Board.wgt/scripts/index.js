@@ -1,7 +1,7 @@
 /*
  *
  * index.js for TexBoard
- * (C) oboklage 2022
+ * (C) obooklage 2022
  *
  */ 
 
