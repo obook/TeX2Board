@@ -11,8 +11,10 @@ Original code : http://www.mit.edu/afs.new/sipb/project/mathjax/mathjax-git/docs
         <!-- Mathjax -->
         <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
-            tex2jax: {
-            inlineMath: [["$","$"],["\\(","\\)"]]
+            tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]],
+            "HTML-CSS": {matchFontHeight: false},
+            SVG: {matchFontHeight: false},
+            CommonHTML: {matchFontHeight: false}
             }
         });
         </script>
@@ -22,7 +24,7 @@ Original code : http://www.mit.edu/afs.new/sipb/project/mathjax/mathjax-git/docs
     <body>
         <div class="wrapper">
 
-            <div class="cellMathOutput"><span id="MathOutput">out</span></div>
+            <div class="cellMathOutput"><span id="MathOutput"></span></div>
 
             <div class="cellMathInput">
                 <form name="sourcecodeform">
