@@ -83,7 +83,9 @@ function SaveParameters()
 function MakeLaTeX()
 {
     console.log("MakeLaTeX");
-    document.getElementById('MathOutput').textContent = document.getElementById('MathInput').value;
+    var MathInput = document.getElementById('MathInput').value;
+    var MathInputCoded = MathInput.replace(/[\n\r]/g, '$\\\\$'); /* Replace carriage return */
+    document.getElementById('MathOutput').textContent = MathInputCoded;
     MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
     SaveParameters();
 }

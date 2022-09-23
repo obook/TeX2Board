@@ -33,5 +33,5 @@ input[type="text"], textarea {
 .cellMathOutput {
   border-radius: 5px;
   padding: 10px;
-  /* font-size: 200%; */
+  font-size: 160%;
 }
