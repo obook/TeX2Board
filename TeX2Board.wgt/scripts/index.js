@@ -27,10 +27,10 @@ function GetParameters()
                 document.getElementById("MathInput").value = MathInput;
                 console.log("Préférences sankore récupérées.");
             }
-            else
-            {
-                MakeDefaultCode();
-            }
+        }
+        else
+        {
+            MakeSampleCode();
         }
     }
     else if (window.localStorage.getItem('MathInput'))
@@ -41,22 +41,18 @@ function GetParameters()
             document.getElementById("MathInput").value=window.localStorage.getItem('MathInput');
             console.log("Préférences localStorage récupérées.");
         }
-        else
-        {
-            MakeDefaultCode();
-        }
     }
     else /* Sample TeX */
     {
-        document.getElementById("MathInput").innerHTML="Résoudre les équations suivantes.$\\\\$\na) $2x-4=8$ $\\\\$\nb) $-3x+1=0$";
+        MakeSampleCode();
     }
     
     MakeLaTeX();
 }
 
-function MakeDefaultCode()
+function MakeSampleCode()
 {
-    document.getElementById("MathInput").innerHTML="Résoudre les équations suivantes.$\\\\$\na) $2x-4=8$ $\\\\$\nb) $-3x+1=0$";
+    document.getElementById("MathInput").innerHTML="Résoudre l'équation $(x+2)^3-(x-1)^3 = 0$";
 }
 
 function SaveParameters()
