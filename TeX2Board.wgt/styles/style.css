@@ -10,13 +10,6 @@ body {
   overflow: hidden; /* Hide scrollbars */
 } 
 
-input[type="text"], textarea {
-  background-color : #ddd; 
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 80%;
-}
-
 .wrapper {
   display: grid;
   grid-template-columns: 100%;
@@ -30,6 +23,13 @@ input[type="text"], textarea {
   /* font-size: 200%; */
 }
 
+input[type="text"], textarea {
+  background-color : #ddd; 
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 80%;
+}
+
 .cellMathOutput {
   border-radius: 5px;
   padding: 10px;
@@ -37,8 +37,6 @@ input[type="text"], textarea {
 }
 
 /* MathJax */
-
 .mjx-chtml{ 
 	font-size: 100% !important;
 }
-
