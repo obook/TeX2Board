@@ -80,7 +80,7 @@ function MakeLaTeX()
 {
     console.log("MakeLaTeX");
     var MathInput = document.getElementById('MathInput').value;
-    var MathInputCoded = MathInput.replace(/[\n\r]/g, '$\\\\$'); /* Replace carriage return */
+    var MathInputCoded = MathInput.replace(/\n{2,}/g, '$\\\\$'); // Replace doubles carriages return
     document.getElementById('MathOutput').textContent = MathInputCoded;
     MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
     SaveParameters();
