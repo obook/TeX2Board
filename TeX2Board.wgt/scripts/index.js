@@ -89,20 +89,22 @@ function MakeLaTeX()
 function HideShowButton()
 {
     const HideShowButton = document.getElementById("HideShowButton");
-    //const MakeLaTeXButton = document.getElementById("MakeLaTeXButton");
+    const MakeLaTeXButton = document.getElementById("MakeLaTeXButton");
     const MathInput = document.getElementById("MathInput");
     
     if (MathInput.style.display === "none") 
     {
         MathInput.style.display = "block";
-        // MakeLaTeXButton.style.display = "block";
+        //MakeLaTeXButton.style.display = "block";
+        MakeLaTeXButton.style.visibility = 'visible';
         HideShowButton.value = "Hide";
     }
     else 
     {
         MathInput.style.display = "none";
         // MakeLaTeXButton.style.display = "none";
-        HideShowButton.value = "Code";
+        MakeLaTeXButton.style.visibility = 'hidden';
+        HideShowButton.value = "Show";
     }
 
 }
