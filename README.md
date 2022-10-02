@@ -5,11 +5,7 @@ Installer le dossier TeX2Board.wgt complet dans le dossier des applications Open
 
 Pour Linux, dans le dossier ~/.local/share/OpenBoard/interactive content/
 
-Pour Windows :
-
-- pour OpenBoard version 1.6 et supérieures, dans le dossier C:\Program Files\OpenBoard\library\applications\ 
-
-- pour OpenBoard version 1.5 et antérieures, dans le dossier C:\Program Files(x86)\OpenBoard\library\applications\
+Pour Windows, dans le dossier C:\Users\user\AppData\Local\OpenBoard\interactive content\
 
 Remarque : Pour fonctionner, le widget utilise la bibliothèque logicielle JavaScript MathJax qui nécessite une connexion InterNet.
 
