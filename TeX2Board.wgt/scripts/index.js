@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", ContentLoaded);
 function ContentLoaded()
 {
     console.log("DOMContentLoaded.");
+    window.hiddenbuttons = false;
     GetParameters();
 }
 
@@ -27,6 +28,7 @@ function GetParameters()
                 document.getElementById("MathInput").value = MathInput;
                 console.log("Préférences sankore récupérées.");
             }
+            window.hiddenbuttons = (window.sankore.preference('hiddenbuttons') === 'true');
         }
         else
         {
@@ -39,6 +41,7 @@ function GetParameters()
         if( MathInput !="" )
         {
             document.getElementById("MathInput").value=window.localStorage.getItem('MathInput');
+            window.hiddenbuttons = (window.localStorage.getItem('hiddenbuttons') === 'true');
             console.log("Préférences localStorage récupérées.");
         }
     }
@@ -48,6 +51,7 @@ function GetParameters()
     }
     
     MakeLaTeX();
+    HideShowButton(window.hiddenbuttons);
 }
 
 function MakeSampleCode()
@@ -66,12 +70,14 @@ function SaveParameters()
         {
             window.sankore.setPreference('parameters','saved');
             window.sankore.setPreference('MathInput', MathInput);
+            window.sankore.setPreference('hiddenbuttons', window.hiddenbuttons);
             console.log("Préférences sankore sauvegardées.");
         }
     }
     else
     {
         localStorage.setItem('MathInput', MathInput);
+        localStorage.setItem('hiddenbuttons', window.hiddenbuttons);
         console.log("Préférences localstorage sauvegardées.");
     }
 }
@@ -86,26 +92,25 @@ function MakeLaTeX()
     SaveParameters();
 }
 
-function HideShowButton()
+function HideShowButton(hiddenbuttons=true)
 {
     const HideShowButton = document.getElementById("HideShowButton");
     const MakeLaTeXButton = document.getElementById("MakeLaTeXButton");
     const MathInput = document.getElementById("MathInput");
-    
-    if (MathInput.style.display === "none") 
+
+    if (MathInput.style.display === "none" || window.hiddenbuttons === true) 
     {
+        window.hiddenbuttons = false;
         MathInput.style.display = "block";
-        //MakeLaTeXButton.style.display = "block";
         MakeLaTeXButton.style.visibility = 'visible';
         HideShowButton.value = "Hide";
+        window.hiddenbuttons = false;
     }
     else 
     {
         MathInput.style.display = "none";
-        // MakeLaTeXButton.style.display = "none";
         MakeLaTeXButton.style.visibility = 'hidden';
         HideShowButton.value = "Show";
+        window.hiddenbuttons = true;
     }
-
 }
-
