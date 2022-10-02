@@ -1,6 +1,6 @@
 /*
  *
- * index.js for TexBoard
+ * index.js for Tex2Board
  * (C) obooklage 2022
  *
  */ 
@@ -9,9 +9,23 @@ document.addEventListener("DOMContentLoaded", ContentLoaded);
 
 function ContentLoaded()
 {
-    console.log("DOMContentLoaded.");
+    console.log("ContentLoaded.");
     window.hiddenbuttons = false;
     GetParameters();
+    /* Futurs use
+    if (window.widget) 
+    {  
+		window.widget.onenter = function() // Quand on quitte le widget
+        {
+            SaveParameters();
+            window.alert("onenter");
+		}
+        window.widget.onleave = function() // Quand on quitte le widget
+        {
+            SaveParameters();
+            window.alert("onleave");
+		}
+	}*/
 }
 
 function GetParameters()
@@ -96,13 +110,9 @@ function MakeLaTeX()
 function SetButtonsState(hiddenbuttons=true)
 {
     if(hiddenbuttons === true)
-    {
         window.hiddenbuttons = false;
-    }
     else
-    {
         window.hiddenbuttons = true;
-    }
 
     SwitchButtonsState();
 }

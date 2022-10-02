@@ -3,7 +3,7 @@
 <widget xmlns="http://www.w3.org/ns/widgets" 
 		xmlns:ub="http://uniboard.mnemis.com/widgets"
         id="http://obooklage.free.fr/TeX2Board" 
-        version="1.0"
+        version="1.1"
 	width="640"
 	height="260"
 	ub:resizable="true"
