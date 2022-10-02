@@ -41,17 +41,18 @@ function GetParameters()
         if( MathInput !="" )
         {
             document.getElementById("MathInput").value=window.localStorage.getItem('MathInput');
-            window.hiddenbuttons = (window.localStorage.getItem('hiddenbuttons') === 'true');
             console.log("Préférences localStorage récupérées.");
         }
+        window.hiddenbuttons = (window.localStorage.getItem('hiddenbuttons') === 'true');
     }
     else /* Sample TeX */
     {
         MakeSampleCode();
     }
-    
+
+    SetButtonsState(window.hiddenbuttons);
+
     MakeLaTeX();
-    HideShowButton(window.hiddenbuttons);
 }
 
 function MakeSampleCode()
@@ -92,25 +93,40 @@ function MakeLaTeX()
     SaveParameters();
 }
 
-function HideShowButton(hiddenbuttons=true)
+function SetButtonsState(hiddenbuttons=true)
+{
+    if(hiddenbuttons === true)
+    {
+        window.hiddenbuttons = false;
+    }
+    else
+    {
+        window.hiddenbuttons = true;
+    }
+
+    SwitchButtonsState();
+}
+
+function SwitchButtonsState()
 {
     const HideShowButton = document.getElementById("HideShowButton");
     const MakeLaTeXButton = document.getElementById("MakeLaTeXButton");
     const MathInput = document.getElementById("MathInput");
 
-    if (MathInput.style.display === "none" || window.hiddenbuttons === true) 
+    if(window.hiddenbuttons === true)
     {
-        window.hiddenbuttons = false;
         MathInput.style.display = "block";
         MakeLaTeXButton.style.visibility = 'visible';
         HideShowButton.value = "Hide";
         window.hiddenbuttons = false;
     }
-    else 
+    else
     {
         MathInput.style.display = "none";
         MakeLaTeXButton.style.visibility = 'hidden';
         HideShowButton.value = "Show";
         window.hiddenbuttons = true;
     }
+
+    SaveParameters();
 }
