@@ -28,7 +28,7 @@ function GetParameters()
                 document.getElementById("MathInput").value = MathInput;
                 console.log("Préférences sankore récupérées.");
             }
-            window.hiddenbuttons = (window.sankore.preference('hiddenbuttons') === 'true');
+            window.hiddenbuttons = (window.sankore.preference('hiddenbuttons', false) === 'true');
         }
         else
         {
@@ -43,7 +43,7 @@ function GetParameters()
             document.getElementById("MathInput").value=window.localStorage.getItem('MathInput');
             console.log("Préférences localStorage récupérées.");
         }
-        window.hiddenbuttons = (window.localStorage.getItem('hiddenbuttons') === 'true');
+        window.hiddenbuttons = (window.localStorage.getItem('hiddenbuttons', false) === 'true');
     }
     else /* Sample TeX */
     {
