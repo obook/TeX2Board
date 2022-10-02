@@ -3,7 +3,7 @@ OpenSankoré/OpenBoard LaTeX widget
 
 Installer le dossier TeX2Board.wgt complet dans le dossier des applications OpenBoard.
 
-Pour Linux, dans le dossier /opt/openboard/library/applications/
+Pour Linux, dans le dossier ~/.local/share/OpenBoard/interactive content/
 
 Pour Windows :
 
