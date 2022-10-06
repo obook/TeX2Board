@@ -36,6 +36,17 @@ input[type="text"], textarea {
   font-size: 160%; /* Match to OpenBoard default font size */
 }
 
+.buttons { 
+  width: 25%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+button {
+  width: 100%;
+  margin: 5px; /* or whatever you like */
+}
+
 /* MathJax */
 .mjx-chtml{ 
 	font-size: 100% !important;
