@@ -20,7 +20,6 @@ body {
   background-color: #fff;
   border-radius: 5px;
   padding: 10px;
-  /* font-size: 200%; */
 }
 
 input[type="text"], textarea {
@@ -37,7 +36,7 @@ input[type="text"], textarea {
 }
 
 .buttons { 
-  width: 25%;
+  width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
 }
