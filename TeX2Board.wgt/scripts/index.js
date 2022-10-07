@@ -144,8 +144,8 @@ function SwitchButtonsState()
     if(window.hiddenbuttons === true)
     {
         MathInput.style.display = "block";
-        HideShowButton.textContent = "HIDE";
-                
+        //HideShowButton.textContent = "HIDE";
+        HideShowButton.style.visibility = 'visible';
         MakeLaTeXButton.style.visibility = 'visible';
         FontSizeDefault.style.visibility = 'visible';
         FontSizeDown.style.visibility = 'visible';
@@ -156,8 +156,8 @@ function SwitchButtonsState()
     else
     {
         MathInput.style.display = "none";
-        HideShowButton.textContent = "SHOW";
-        
+        //HideShowButton.textContent = "SHOW";
+        HideShowButton.style.visibility = 'hidden';
         MakeLaTeXButton.style.visibility = 'hidden';
         FontSizeDefault.style.visibility = 'hidden';
         FontSizeDown.style.visibility = 'hidden';
