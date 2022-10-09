@@ -10,9 +10,10 @@ document.addEventListener("DOMContentLoaded", ContentLoaded);
 function ContentLoaded()
 {
     console.log("ContentLoaded.");
+
     window.hiddenbuttons = false;
     window.defaultfontsize = 100; /* 100% */
-    window.fontsize = window.defaultfontsize; /* 100% */
+    window.fontsize = window.defaultfontsize;
     window.MathInput = "";
 
     GetParameters();
@@ -27,25 +28,27 @@ function ContentLoaded()
     ButtonsStateSet(window.hiddenbuttons);
 
     MakeLaTeX();
+
 }
 
 function GetParameters()
 {
     console.log("GetParameters");
-    /* Restauration */
     
     if (window.sankore)
     {
         if (window.sankore.preference('parameters')=='saved')
         {
-            window.MathInput = window.sankore.preference('MathInput');
+            window.MathInput = window.sankore.preference.preference('MathInput');
+            alert(window.MathInput);
+
             window.hiddenbuttons = (window.sankore.preference('hiddenbuttons', false) === 'true');
             window.fontsize = parseInt(window.sankore.preference('fontsize', 100));
             console.log("Préférences sankore récupérées.");
         }
     }
     else 
-    {    
+    {
         if (window.localStorage.getItem('parameters')=='saved')
         {
             window.MathInput = window.localStorage.getItem('MathInput');
@@ -58,14 +61,14 @@ function GetParameters()
 
 function SaveParameters()
 {
-    console.log("SaveParameters");
-    /* Sauvegarde */
+    /* Sauvegarde du code source */
         
-    window.MathInput = document.getElementById('MathInput').value;
+    var MathInput = document.getElementById('MathInput').value;
     if (window.widget)
     {
+        alert("SaveParameters");
         window.sankore.setPreference('parameters','saved');
-        window.sankore.setPreference('MathInput', window.MathInput);
+        window.sankore.setPreference('MathInput', MathInput);
         window.sankore.setPreference('hiddenbuttons', window.hiddenbuttons);
         window.sankore.setPreference('fontsize', window.fontsize);
         console.log("Préférences sankore sauvegardées.");
@@ -73,7 +76,7 @@ function SaveParameters()
     else
     {
         localStorage.setItem('parameters', 'saved');
-        localStorage.setItem('MathInput', window.MathInput);
+        localStorage.setItem('MathInput', MathInput);
         localStorage.setItem('hiddenbuttons', window.hiddenbuttons);
         localStorage.setItem('fontsize', window.fontsize);
         console.log("Préférences localstorage sauvegardées.");
@@ -88,7 +91,7 @@ function MakeSampleCode()
 function MakeLaTeX()
 {
     console.log("MakeLaTeX");
-    window.MathInput = document.getElementById('MathInput').value;
+    var MathInput = document.getElementById('MathInput').value;
     MathInputCoded = MathInput.replace(/\n\r?/g, '<br />'); // Replace carriages return
     document.getElementById('MathOutput').innerHTML = MathInputCoded;
     MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
