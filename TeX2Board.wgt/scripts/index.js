@@ -10,76 +10,52 @@ document.addEventListener("DOMContentLoaded", ContentLoaded);
 function ContentLoaded()
 {
     console.log("ContentLoaded.");
+
     window.hiddenbuttons = false;
     window.defaultfontsize = 100; /* 100% */
-    window.fontsize = window.defaultfontsize; /* 100% */
+    window.fontsize = window.defaultfontsize;
+    window.MathInput = "";
+
     GetParameters();
-    // FontSizeDefault();
-    /* Futurs use
-    if (window.widget) 
-    {  
-		window.widget.onenter = function() // Quand on quitte le widget
-        {
-            SaveParameters();
-            window.alert("onenter");
-		}
-        window.widget.onleave = function() // Quand on quitte le widget
-        {
-            SaveParameters();
-            window.alert("onleave");
-		}
-	}*/
+    
+    if( window.MathInput != "")
+        document.getElementById("MathInput").value = window.MathInput;
+    else
+       MakeSampleCode();
+
+    FontSizeSet(window.fontsize);
+    
+    ButtonsStateSet(window.hiddenbuttons);
+
+    MakeLaTeX();
+
 }
 
 function GetParameters()
 {
-    
-    console.log("GetParameters");
     /* Restauration du code source */
+    console.log("GetParameters");
     
     if (window.sankore)
     {
         if (window.sankore.preference('parameters')=='saved')
         {
-            var MathInput = window.sankore.preference('MathInput');
-            if( MathInput != "")
-            {
-                document.getElementById("MathInput").value = MathInput;
-            }
-            else
-            {
-                MakeSampleCode();
-            }
+            window.MathInput = window.sankore.preference.preference('MathInput');
             window.hiddenbuttons = (window.sankore.preference('hiddenbuttons', false) === 'true');
             window.fontsize = parseInt(window.sankore.preference('fontsize', 100));
             console.log("Préférences sankore récupérées.");
         }
-
     }
     else 
-    {    
-        if (window.localStorage.getItem('MathInput'))
+    {
+        if (window.localStorage.getItem('parameters')=='saved')
         {
-            var MathInput = window.localStorage.getItem('MathInput');
-            if( MathInput !="" )
-            {
-                document.getElementById("MathInput").value=window.localStorage.getItem('MathInput');
-                console.log("Préférences localStorage récupérées.");
-            }
-            else /* Sample TeX */
-            {
-                MakeSampleCode();
-            }
+            window.MathInput = window.localStorage.getItem('MathInput');
+            window.hiddenbuttons = (window.localStorage.getItem('hiddenbuttons', false) === 'true');
+            window.fontsize = parseInt(window.localStorage.getItem('fontsize', 100));
+            console.log("Préférences localStorage récupérées.");
         }
-        window.hiddenbuttons = (window.localStorage.getItem('hiddenbuttons', false) === 'true');
-        window.fontsize = parseInt(window.localStorage.getItem('fontsize', 100));
     }
-
-    FontSizeSet(window.fontsize);
-    
-    SetButtonsState(window.hiddenbuttons);
-
-    MakeLaTeX();
 }
 
 function MakeSampleCode()
@@ -105,6 +81,7 @@ function SaveParameters()
     }
     else
     {
+        localStorage.setItem('parameters', 'saved');
         localStorage.setItem('MathInput', MathInput);
         localStorage.setItem('hiddenbuttons', window.hiddenbuttons);
         localStorage.setItem('fontsize', window.fontsize);
@@ -122,7 +99,7 @@ function MakeLaTeX()
     SaveParameters();
 }
 
-function SetButtonsState(hiddenbuttons=true)
+function ButtonsStateSet(hiddenbuttons=true)
 {
     if(hiddenbuttons === true)
         window.hiddenbuttons = false;
