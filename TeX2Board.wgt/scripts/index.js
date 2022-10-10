@@ -82,7 +82,8 @@ function SaveParameters()
 
 function MakeSampleCode()
 {
-    document.getElementById("MathInput").innerHTML="1) Déterminer l'ensemble de définition de la fonction $f$ définie par $ f(x)=\\dfrac{2x+1}{\\sqrt{x-3}}$ \n2) Résoudre l'équation $(x+2)^3-(x-1)^3 = 0$";
+    /* document.getElementById("MathInput").innerHTML="1) Déterminer l'ensemble de définition de la fonction $f$ définie par $ f(x)=\\dfrac{2x+1}{\\sqrt{x-3}}$ \n2) Résoudre l'équation $(x+2)^3-(x-1)^3 = 0$"; */
+    document.getElementById("MathInput").innerHTML="Sample : solve $ \\dfrac{2x+1}{\\sqrt{x-3}}=0 $";
 }
 
 function MakeLaTeX()
