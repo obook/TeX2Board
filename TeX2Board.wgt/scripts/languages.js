@@ -5,14 +5,18 @@
     },
     "ru":{
         "hide": "Скрывать",
-        "sample": "Образец $ \\dfrac{2x+1}{\\sqrt{x-3}}=0 $"
+        "sample": "пример $ \\dfrac{2x+1}{\\sqrt{x-3}}=0 $"
     },
     "fr":{
         "hide": "Cacher",
         "sample": "Exemple $ \\dfrac{2x+1}{\\sqrt{x-3}}=0 $"
     },
+    "pt":{
+        "hide": "Ocultar",
+        "sample": "Exemplo $ \\dfrac{2x+1}{\\sqrt{x-3}}=0 $"
+    },
     "sk":{
         "hide": "Skryť",
-        "sample": "Ukážka $ \\dfrac{2x+1}{\\sqrt{x-3}}=0 $"
+        "sample": "Príklad $ \\dfrac{2x+1}{\\sqrt{x-3}}=0 $"
     }
 };
