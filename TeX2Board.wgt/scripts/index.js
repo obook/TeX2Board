@@ -27,7 +27,7 @@ function ContentLoaded()
             window.lang = "en";
         }
         
-        document.getElementById("HideShowButton").innerHTML = sankoreLang[lang].hide;
+        document.getElementById("HideShowButton").innerHTML = sankoreLang[window.lang].hide;
     }
 
     GetParameters();
@@ -42,6 +42,14 @@ function ContentLoaded()
     ButtonsStateSet(window.hiddenbuttons);
 
     MakeLaTeX();
+}
+
+function showMessage(message)
+{
+    if(window.sankore)
+        window.sankore.showMessage(message);
+    else
+        console.log(message);
 }
 
 function GetParameters()
@@ -97,7 +105,7 @@ function SaveParameters()
 
 function MakeSampleCode()
 {
-    document.getElementById("MathInput").innerHTML=sankoreLang[lang].sample;
+    document.getElementById("MathInput").innerHTML=sankoreLang[window.lang].sample;
 }
 
 function MakeLaTeX()
