@@ -1,8 +1,11 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <!--
-Original code : http://www.mit.edu/afs.new/sipb/project/mathjax/mathjax-git/docs/html/typeset.html
-
+Original code : 
+http://www.mit.edu/afs.new/sipb/project/mathjax/mathjax-git/docs/html/typeset.html
+https://github.com/OpenBoard-org/OpenBoard/blob/master/resources/library/applications/WebBrowser.wgt/index.html
 -->
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -13,7 +16,7 @@ Original code : http://www.mit.edu/afs.new/sipb/project/mathjax/mathjax-git/docs
         <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
             tex2jax: {
-				inlineMath: [["$","$"],["\\(","\\)"]]
+                inlineMath: [["$","$"],["\\(","\\)"]]
             }
         });
         </script>
@@ -24,7 +27,7 @@ Original code : http://www.mit.edu/afs.new/sipb/project/mathjax/mathjax-git/docs
         <div class="wrapper">
             <div class="cellMathOutput" onclick="ButtonsStateSet(false)"><span id="MathOutput"></span></div>
             <div class="cellMathInput">
-                <form name="sourcecodeform">
+                <form name="sourcecodeform" action="">
                     <textarea id="MathInput" rows = "5" cols = "50"></textarea>
                 </form>
             </div>
