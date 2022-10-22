@@ -9,26 +9,33 @@ document.addEventListener("DOMContentLoaded", ContentLoaded);
 
 function ContentLoaded()
 {
-    console.log("ContentLoaded.");
+    console.log("ContentLoaded");
     window.hiddenbuttons = false;
     window.defaultfontsize = 100; /* 100% */
     window.fontsize = window.defaultfontsize; /* 100% */
     window.MathInput = "";
     window.lang = "en";
-    
-    if(window.sankore)
+
+    try
     {
-        try
+        if(window.sankore)
+            window.lang = sankore.locale().substring(0,2);
+        else
         {
-            window.lang = sankore.locale().substr(0,2);
+            const userLocale =
+            navigator.languages && navigator.languages.length
+            ? navigator.languages[0]
+            : navigator.language;
+            window.lang = userLocale.substring(0,2);
         }
-        catch(e)
-        {
-            window.lang = "en";
-        }
-        
-        document.getElementById("HideShowButton").innerHTML = sankoreLang[window.lang].hide;
     }
+    catch(err)
+    {
+            window.lang = "en";
+    }
+ 
+    console.log("window.lang="+window.lang);
+    document.getElementById("HideShowButton").innerHTML = sankoreLang[window.lang].hide;
 
     GetParameters();
 
