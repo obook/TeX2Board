@@ -39,16 +39,17 @@ function ContentLoaded()
 
     GetParameters();
 
-    if( window.MathInput != "")
-        document.getElementById("MathInput").value = window.MathInput;
-    else
-       MakeSampleCode();
-
     FontSizeSet(window.fontsize);
     
     ButtonsStateSet(window.hiddenbuttons);
 
-    MakeLaTeX();
+    if( window.MathInput != "")
+    {
+        document.getElementById("MathInput").value = window.MathInput;
+        MakeLaTeX();
+    }
+    else
+       MakeSampleCode();
 }
 
 function showMessage(message)
