@@ -5,35 +5,12 @@
  * 
  */
 
- :root {
-  --primary-background-color: rgb(255, 255, 255);
-  --editor-background-color: rgb(210, 207, 207);
- }
-
 body {
-  background-color: var(--primary-background-color);
+  background-color: #fff;
   overflow: hidden; /* Hide scrollbars */
   margin:0px;
+  font-family: serif, "Times New Roman", Times;
 } 
-
-.wrapper {
-  display: grid;
-  grid-template-columns: 100%;
-  grid-gap: 10px;
-}
-
-.cellMathInput {
-  background-color: var(--primary-background-color);
-	margin:5px;
-	left:10px;
-	top:10px;
-}
-
-input[type="text"], textarea {
-  background-color : var(--editor-background-color); 
-  width: 99%;
-  font-size: 100%;
-}
 
 .cellMathOutput {
   border-radius: 5px;
@@ -41,25 +18,18 @@ input[type="text"], textarea {
   font-size: 160%; /* Match to OpenBoard default font size */
 }
 
-.navbar {
-  overflow: hidden;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
-.buttons { 
-  width: 98%;
-  table-layout: fixed;
-  border-collapse: collapse;
-}
-
-button {
-  width: 100%;
-  margin: 5px;
+.MathInput {
+    background-color: white !important;
+    color: black !important;
+    font-size: 100%;
 }
 
 /* MathJax */
 .mjx-chtml{ 
 	font-size: 100% !important;
+}
+
+/* Jquery */
+.ui-popup-container { 
+    width: 80%; 
 }

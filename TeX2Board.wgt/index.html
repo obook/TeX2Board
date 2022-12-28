@@ -1,46 +1,74 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-
+<!DOCTYPE html>
 <html>
 <!--
 Original code : 
 http://www.mit.edu/afs.new/sipb/project/mathjax/mathjax-git/docs/html/typeset.html
 https://github.com/OpenBoard-org/OpenBoard/blob/master/resources/library/applications/WebBrowser.wgt/index.html
 -->
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>TeX2Board</title>
-        <script type="text/javascript" src="scripts/languages.js"></script>
-        <script type="text/javascript" src="scripts/index.js"></script>
-        <!-- Mathjax -->
-        <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            tex2jax: {
-                inlineMath: [["$","$"],["\\(","\\)"]]
-            }
-        });
-        </script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-        <link rel="stylesheet" type="text/css" href="styles/style.css">
-    </head>
-    <body>
-        <div class="wrapper">
-            <div class="cellMathOutput" onclick="SwitchButtonsState();"><span id="MathOutput"></span></div>
-            <div class="cellMathInput">
-                <form name="sourcecodeform" action="">
-                    <textarea id="MathInput" rows = "5" cols = "50"></textarea>
-                </form>
-            </div>
-            <div class="navbar">
-                <table class=buttons>
-                    <tr>
-                        <td><button id="MakeLaTeXButton" onclick="MakeLaTeX();">TeX</button></td>
-                        <td><button id='HideShowButton' onclick="SwitchButtonsState();">Hide</button></td>
-                        <td><button id='FontSizeDefault' onclick="FontSizeDefault();">100%</button></td>
-                        <td><button id='FontSizeDown' onclick="FontSizeDown();">-</button></td>
-                        <td><button id='FontSizeUp' onclick="FontSizeUp();">+</button></td></tr>
-                </table>
-            </div>
-        </div>
-    </body>
+<head>
+	<meta charset="utf-8">
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+	<title>TeX2Board</title>
+	<link rel="stylesheet" href="scripts/jquery/css/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="styles/style.css">
+	<script src="scripts/jquery/js/jquery.js"></script>
+	<script src="scripts/jquery/js/jquery.mobile-1.4.5.min.js"></script>
+	<script src="scripts/languages.js"></script>
+	<script src="scripts/index.js"></script>
+    <!-- Mathjax -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [["$","$"],["\\(","\\)"]]
+        }
+    });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body>
+    <!-- page -->
+	<div data-role="page" style="background:white">
+        <!-- main -->
+		<div role="main" data-theme="a">
+			<div class="cellMathOutput" onclick="SwitchButtonsState();"><span id="MathOutput"></span></div>
+		</div>
+		<!-- /main -->
+
+		<!-- footer -->
+		<div data-role="footer" id="footer" data-position="fixed" data-tap-toggle="false"> <!-- data-tap-toggle="false" -->
+            <!-- navbar -->
+		    <div data-role="navbar" id="navbar" data-grid="c">
+			<ul>
+			    <li>
+				<a href="#PopupCode" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-transition="pop">Code</a>
+				<div data-role="popup" id="PopupCode" data-overlay-theme="b" data-theme="a" data-dismissible="false">
+				    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-left">Close</a>
+				    <div data-role="header" data-theme="a"><h1>LaTeX</h1></div>
+				    <div role="main" class="ui-content">
+                        <textarea data-mini="true" name="textarea-1" class="MathInput" id="MathInput"></textarea>
+                        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" data-transition="flow" onclick="MakeLaTeX();">Ok</a>
+				    </div>
+				</div>
+			    </li>
+			    
+			    <li>
+				<button type="submit" data-theme="b" id="FontSizeDefault" onclick="FontSizeDefault();">100%</button>
+			    </li>
+			    
+			    <li>
+				<button type="submit" data-theme="b" id="FontSizeUp" onclick="FontSizeUp();">+</button>
+			    </li>
+			    
+			    <li>
+				<button type="submit" data-theme="b" id="FontSizeDown" onclick="FontSizeDown();">-</button>
+			    </li>
+			    
+			</ul>
+		    </div>
+		    <!-- /navbar -->
+		</div>
+		<!-- /footer -->
+	</div>
+	<!-- /page -->
+</body>
 </html>

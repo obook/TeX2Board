@@ -35,21 +35,25 @@ function ContentLoaded()
     }
  
     console.log("window.lang="+window.lang);
-    document.getElementById("HideShowButton").innerHTML = sankoreLang[window.lang].hide;
 
     GetParameters();
+    
+    if( window.MathInput != "")
+    {
+        console.log("Set MathInput to "+ window.MathInput);
+        document.getElementById("MathInput").value = window.MathInput;
+        MakeLaTeX();
+    }
+    else
+    {
+       console.log("Set MathInput is EMPTY");
+       MakeSampleCode();
+    }
 
     FontSizeSet(window.fontsize);
     
     ButtonsStateSet(window.hiddenbuttons);
 
-    if( window.MathInput != "")
-    {
-        document.getElementById("MathInput").value = window.MathInput;
-        MakeLaTeX();
-    }
-    else
-       MakeSampleCode();
 }
 
 function showMessage(message)
@@ -85,6 +89,8 @@ function GetParameters()
             console.log("Préférences localStorage récupérées.");
         }
     }
+    
+    console.log("GetParameters window.MathInput=" + window.MathInput);
 }
 
 function SaveParameters()
@@ -93,6 +99,7 @@ function SaveParameters()
     /* Sauvegarde */
         
     window.MathInput = document.getElementById('MathInput').value;
+    console.log("SaveParameters window.MathInput=" + window.MathInput);
     if (window.widget)
     {
         window.sankore.setPreference('parameters','saved');
@@ -138,35 +145,17 @@ function ButtonsStateSet(hiddenbuttons=true)
 
 function SwitchButtonsState()
 {
-    const HideShowButton = document.getElementById("HideShowButton");
-    const MakeLaTeXButton = document.getElementById("MakeLaTeXButton");
-    const MathInput = document.getElementById("MathInput");
-    const FontSizeDefault = document.getElementById("FontSizeDefault");
-    const FontSizeDown = document.getElementById("FontSizeDown");
-    const FontSizeUp = document.getElementById("FontSizeUp");
+
+    const navbar = document.getElementById("navbar");
     
     if(window.hiddenbuttons === true)
     {
-        MathInput.style.display = "block";
-        //HideShowButton.textContent = "HIDE";
-        HideShowButton.style.visibility = 'visible';
-        MakeLaTeXButton.style.visibility = 'visible';
-        FontSizeDefault.style.visibility = 'visible';
-        FontSizeDown.style.visibility = 'visible';
-        FontSizeUp.style.visibility = 'visible';
-        MakeLaTeXButton.style.visibility = 'visible';
+        navbar.style.display = "block";
         window.hiddenbuttons = false;
     }
     else
     {
-        MathInput.style.display = "none";
-        //HideShowButton.textContent = "SHOW";
-        HideShowButton.style.visibility = 'hidden';
-        MakeLaTeXButton.style.visibility = 'hidden';
-        FontSizeDefault.style.visibility = 'hidden';
-        FontSizeDown.style.visibility = 'hidden';
-        MakeLaTeXButton.style.visibility = 'hidden';
-        FontSizeUp.style.visibility = 'hidden';
+        navbar.style.display = "none";
         window.hiddenbuttons = true;
     }
 
