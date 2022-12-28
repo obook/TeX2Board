@@ -1,3 +1,6 @@
+Version 2.0 28122022
+Use JqueryMobile
+
 Version 1.2 15102022
 Deuxième release
 
@@ -6,6 +9,3 @@ Première releae
 
 Version 1.0 22092022
 Début du projet
-
-
-
