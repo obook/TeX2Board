@@ -1,4 +1,9 @@
 Logo:
 https://commons.wikimedia.org/wiki/File:BibTeX_logo.svg
+
 icones :
 http://commons.wikimedia.org/wiki/Crystal_Clear
+
+Javascript : 
+http://www.mit.edu/afs.new/sipb/project/mathjax/mathjax-git/docs/html/typeset.html
+https://github.com/OpenBoard-org/OpenBoard/blob/master/resources/library/applications/WebBrowser.wgt/index.html
