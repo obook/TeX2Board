@@ -1,5 +1,5 @@
 # TeX2Board
-OpenSankoré/OpenBoard LaTeX widget
+OpenSankoré/OpenBoard version >= 1.7.0 LaTeX widget
 
 Installer le dossier TeX2Board.wgt complet dans le dossier des applications OpenBoard.
 
@@ -10,5 +10,4 @@ Pour Windows, dans le dossier C:\Users\\(nom de l'utilisateur)\AppData\Local\Ope
 Remarque : Pour fonctionner, le widget utilise la bibliothèque logicielle JavaScript MathJax qui nécessite une connexion InterNet.
 
 <img src="Screenshot_20220922_172625.png" width="640">
-
 
