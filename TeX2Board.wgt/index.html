@@ -12,6 +12,11 @@ https://github.com/OpenBoard-org/OpenBoard/blob/master/resources/library/applica
 	<link rel="stylesheet" href="scripts/jquery/css/jquery.mobile-1.4.5.min.css">
 	<link rel="stylesheet" href="styles/style.css">
 	<script src="scripts/jquery/js/jquery.js"></script>
+	<script>
+	$(document).bind('mobileinit', function () {
+	    $.mobile.activeBtnClass = 'unused';
+	});
+	</script>
 	<script src="scripts/jquery/js/jquery.mobile-1.4.5.min.js"></script>
 	<script src="scripts/languages.js"></script>
 	<script src="scripts/index.js"></script>
