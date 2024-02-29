@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<widget xmlns="http://www.w3.org/ns/widgets" 
+<widget xmlns="http://www.w3.org/ns/widgets"
 		xmlns:ub="http://uniboard.mnemis.com/widgets"
-        id="http://obooklage.free.fr/TeX2Board" 
+        id="http://obooklage.free.fr/TeX2Board"
         version="2.0"
 	width="640"
 	height="260"
@@ -10,12 +10,12 @@
 	ub:transparent="true"
 	ub:move="false"
 >
-		
-		<name>TeX2Board</name>
+
+		<name>MathJax</name>
 		<author href=""
 	            email="">Olivier Booklage</author>
 		<description>Écrire des formules scientifiques avec LaTeX (MathJax)</description>
 		<preference name="skin"
 		            value="uniboard"/>
-		<content src="index.html"/> 
+		<content src="index.html"/>
 </widget>

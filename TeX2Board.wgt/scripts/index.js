@@ -1,203 +1,211 @@
 /*
  *
  * index.js for Tex2Board
- * (C) obooklage 2022
- *
+ * (C) obooklage 2022-2024
+ * JQuery used
+ * for OpenBoard >=1.7.0
  */
 
-document.addEventListener("DOMContentLoaded", ContentLoaded);
+// document.addEventListener("DOMContentLoaded", ContentLoaded);
 
-function ContentLoaded()
-{
-    console.log("ContentLoaded");
-    window.hiddenbuttons = false;
-    window.defaultfontsize = 100; /* 100% */
-    window.fontsize = window.defaultfontsize; /* 100% */
-    window.MathInput = "";
-    window.lang = "en";
+async function init(){
 
-    try
+/* Variables */
+var defaultfontsize = 100;
+var fontsize = defaultfontsize;
+var navbarvisibility = true;
+var lang = GetLanguage();
+/* Fields */
+var MathInputField = $('#MathInputField');
+var MathOuputField = $('#MathOuputField');
+var MathInput = '';
+/* Buttons  */
+var OkButton =$('#OkButton');
+var FontSizeDefaultButton = $('#FontSizeDefaultButton');
+var FontSizeUpButton = $('#FontSizeUpButton');
+var FontSizeDownButton = $('#FontSizeDownButton');
+/* Objects */
+var navbar = $('#navbar');
+
+    ConsoleMessage("init:start");
+
+    function ConsoleMessage(message) {
+        console.log(message);
+    }
+
+    function MakeLaTeX()
     {
-        if(window.sankore)
+        ConsoleMessage("MakeLaTeX");
+        MathInput = MathInputField.val();
+        MathInputCoded = MathInput.replace(/\n\r?/g, '<br />'); // Replace carriages return
+        MathOuputField.html(MathInputCoded);
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        SavePreferences();
+    }
+
+    function GetLanguage()
+    {
+    let lang = 'en';
+        try {
+            if(window.sankore) {
+                /* v1.7.0 obsolete : sankore.locale() */
+                lang =  window.sankore.lang.substring(0,2);
+                ConsoleMessage("GetLanguage:Mode window.sankore ["+lang+"]");
+            }
+            else {
+                const userLocale =
+                navigator.languages && navigator.languages.length
+                ? navigator.languages[0]
+                : navigator.language;
+                lang = userLocale.substring(0,2);
+                ConsoleMessage("GetLanguage:Mode navigator ["+lang+"]");
+            }
+        }
+        catch(err) {
+                ConsoleMessage("GetLanguage:Try failed ["+lang+"]");
+        }
+        return(lang);
+    }
+
+    function MakeSampleCode()
+    {
+        ConsoleMessage("MakeSampleCode");
+        MathInput = sankoreLang[lang].sample;
+        $("#MathInputField").html(MathInput);
+    }
+
+    function SetNavbarVisibility(navbarvisibility=true)
+    {
+        if(navbarvisibility === false) {
+            ConsoleMessage("SetNavbarVisibility:hide");
+            navbar.hide();
+        } else {
+            ConsoleMessage("SetNavbarVisibility:show");
+            navbar.show();
+        }
+    }
+
+    function SwitchNavbarVisibility()
+    {
+
+        if(navbarvisibility === true)
+            navbarvisibility = false;
+       else
+            navbarvisibility = true;
+
+        SetNavbarVisibility(navbarvisibility);
+        SavePreferences();
+    }
+
+    function FontSizeSet(value)
+    {
+        ConsoleMessage("FontSizeSet="+value);
+        document.getElementsByTagName('body')[0].style.fontSize = value +"%";
+        SavePreferences();
+    }
+
+    function SavePreferences()
+    {
+        /* Sauvegarde */
+        ConsoleMessage("SavePreferences " + MathInput + " " + navbarvisibility + " " + fontsize);
+        if (window.widget)
         {
-            window.lang = sankore.locale().substring(0,2);
+            window.sankore.setPreference('parameters','saved');
+            window.sankore.setPreference('MathInput', MathInput);
+            window.sankore.setPreference('navbarvisibility', navbarvisibility);
+            window.sankore.setPreference('fontsize', fontsize);
+            ConsoleMessage("SavePreferences sankore done.");
         }
         else
         {
-            const userLocale =
-            navigator.languages && navigator.languages.length
-            ? navigator.languages[0]
-            : navigator.language;
-            window.lang = userLocale.substring(0,2);
+            localStorage.setItem('parameters', 'saved');
+            localStorage.setItem('MathInput', MathInput);
+            localStorage.setItem('navbarvisibility', navbarvisibility);
+            localStorage.setItem('fontsize', fontsize);
+            ConsoleMessage("SavePreferences localstorage done.");
+        }
+
+    }
+
+    FontSizeUpButton.click(
+        function(){
+            fontsize = fontsize +20;
+            FontSizeSet(fontsize);
+    });
+
+    FontSizeDownButton.click(
+        function(){
+            if (fontsize>20) {
+                fontsize = fontsize -20;
+                FontSizeSet(fontsize);
+            }
+    });
+
+    FontSizeDefaultButton.click(
+        function(){
+            fontsize = defaultfontsize;
+            FontSizeSet(fontsize);
+    });
+
+     MathOuputField.click(
+        function(){
+            SwitchNavbarVisibility();
+    });
+
+    OkButton.click(
+        function(){
+            MakeLaTeX();
+    });
+
+    /* MAIN PGM */
+
+    if(window.sankore) {
+        if( await window.sankore.async.preference('parameters') )
+        {
+            MathInput = await window.sankore.async.preference('MathInput', MathInput);
+            navbarvisibility = (await window.sankore.async.preference('navbarvisibility', false) === 'true');
+            fontsize = await window.sankore.async.preference('fontsize', 100);
+            ConsoleMessage("sankore.preference :"+ MathInput+" "+navbarvisibility+" "+fontsize);
+        } else {
+            ConsoleMessage("No preferences found");
+            MakeSampleCode();
+            SavePreferences();
+        }
+
+    }
+    else {
+        if (window.localStorage.getItem('parameters') ) {
+            MathInput = window.localStorage.getItem('MathInput');
+            navbarvisibility = (window.localStorage.getItem('navbarvisibility', false) === 'true');
+            fontsize = parseInt(window.localStorage.getItem('fontsize', 100));
+            ConsoleMessage("localStorage :"+ MathInput+" "+navbarvisibility+" "+fontsize);
+        }
+        else {
+            ConsoleMessage("No preferences found");
+            MakeSampleCode();
+            SavePreferences();
         }
     }
-    catch(err)
-    {
-            window.lang = "en";
-    }
 
-    console.log("window.lang="+window.lang);
+    /* Set navbar visibility */
 
-    GetParameters();
+    SetNavbarVisibility(navbarvisibility);
 
-    if( window.MathInput != "")
-    {
-        console.log("Set MathInput to "+ window.MathInput);
-        document.getElementById("MathInput").value = window.MathInput;
+    /* Set Font size Source */
+
+    FontSizeSet(fontsize);
+
+    /* Set Code Source */
+
+    if( MathInput != "") {
+        ConsoleMessage("Set MathInput to "+ MathInput);
+        $("#MathInputField").val(MathInput);
         MakeLaTeX();
     }
-    else
-    {
-       console.log("Set MathInput is EMPTY");
+    else {
+       ConsoleMessage("Set MathInput is EMPTY");
        MakeSampleCode();
     }
 
-    FontSizeSet(window.fontsize);
-
-    ButtonsStateSet(window.hiddenbuttons);
-
-}
-
-function showMessage(message)
-{
-    if(window.sankore)
-        window.sankore.showMessage(message);
-    else
-        console.log(message);
-}
-
-function GetParameters()
-{
-    console.log("GetParameters");
-    /* Restauration */
-
-    if (window.sankore)
-    {
-        if (window.sankore.preference('parameters')=='saved')
-        {
-            $("#id_msg_mode").html("GetParameters : Mode Openboard saved");
-            window.MathInput = window.sankore.preference('MathInput');
-            window.hiddenbuttons = (window.sankore.preference('hiddenbuttons', false) === 'true');
-            window.fontsize = parseInt(window.sankore.preference('fontsize', 100));
-            console.log("Préférences sankore récupérées.");
-        }
-        else
-        {
-            $("#id_msg_mode").html("GetParameters : Mode Openboard NOT saved");
-             /* plante ? Non mais trop rapide
-             showMessage("window.sankore.preference('parameters') != 'saved'");
-              */
-        }
-    }
-    else
-    {
-        $("#id_msg_mode").html("GetParameters : Mode Navigateur");
-        if (window.localStorage.getItem('parameters')=='saved')
-        {
-            window.MathInput = window.localStorage.getItem('MathInput');
-            window.hiddenbuttons = (window.localStorage.getItem('hiddenbuttons', false) === 'true');
-            window.fontsize = parseInt(window.localStorage.getItem('fontsize', 100));
-            console.log("Préférences localStorage récupérées.");
-        }
-    }
-
-    $("#id_msg_getparameters").html("GetParameters : window.MathInput="+ window.MathInput);
-
-}
-
-function SaveParameters()
-{
-    console.log("SaveParameters");
-    /* Sauvegarde */
-
-    window.MathInput = document.getElementById('MathInput').value;
-    console.log("SaveParameters window.MathInput=" + window.MathInput);
-    if (window.widget)
-    {
-        window.sankore.setPreference('parameters','saved');
-        window.sankore.setPreference('MathInput', window.MathInput);
-        window.sankore.setPreference('hiddenbuttons', window.hiddenbuttons);
-        window.sankore.setPreference('fontsize', window.fontsize);
-        console.log("Préférences sankore sauvegardées.");
-        $("#id_msg_saveparameters").html("SaveParameters : window.sankore.setPreference="+ window.MathInput);
-    }
-    else
-    {
-        localStorage.setItem('parameters', 'saved');
-        localStorage.setItem('MathInput', window.MathInput);
-        localStorage.setItem('hiddenbuttons', window.hiddenbuttons);
-        localStorage.setItem('fontsize', window.fontsize);
-        console.log("Préférences localstorage sauvegardées.");
-        $("#id_msg_saveparameters").html("SaveParameters : localStorage.setItem="+ window.MathInput);
-    }
-
-}
-
-function MakeSampleCode()
-{
-    document.getElementById("MathInput").innerHTML=sankoreLang[window.lang].sample;
-}
-
-function MakeLaTeX()
-{
-    console.log("MakeLaTeX");
-    window.MathInput = document.getElementById('MathInput').value;
-    MathInputCoded = MathInput.replace(/\n\r?/g, '<br />'); // Replace carriages return
-    document.getElementById('MathOutput').innerHTML = MathInputCoded;
-    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-    SaveParameters();
-}
-
-function ButtonsStateSet(hiddenbuttons=true)
-{
-    if(hiddenbuttons === true)
-        window.hiddenbuttons = false;
-    else
-        window.hiddenbuttons = true;
-
-    SwitchButtonsState();
-}
-
-function SwitchButtonsState()
-{
-
-    const navbar = document.getElementById("navbar");
-
-    if(window.hiddenbuttons === true)
-    {
-        navbar.style.display = "block";
-        window.hiddenbuttons = false;
-    }
-    else
-    {
-        navbar.style.display = "none";
-        window.hiddenbuttons = true;
-    }
-
-    SaveParameters();
-}
-
-function FontSizeSet(value)
-{
-    console.log("FontSizeSet="+value);
-    document.getElementsByTagName('body')[0].style.fontSize = value +"%";
-    SaveParameters();
-}
-
-function FontSizeDefault()
-{
-    window.fontsize = window.defaultfontsize;
-    FontSizeSet(window.fontsize);
-}
-
-function FontSizeUp()
-{
-    window.fontsize = window.fontsize +20;
-    FontSizeSet(window.fontsize);
-}
-
-function FontSizeDown()
-{
-    window.fontsize = window.fontsize -20;
-    FontSizeSet(window.fontsize);
+    ConsoleMessage("init:end");
 }

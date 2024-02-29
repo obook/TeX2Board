@@ -24,20 +24,27 @@ https://github.com/OpenBoard-org/OpenBoard/blob/master/resources/library/applica
     });
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/javascript">
+
+	    $(document).ready(function(){
+		    init();
+	    });
+
+</script>
 </head>
 <body>
     <!-- page -->
 	<div data-role="page" style="background:white">
         <!-- main -->
 		<div role="main" data-theme="a">
-			<div class="cellMathOutput" onclick="SwitchButtonsState();"><span id="MathOutput"></span></div>
+			<div class="cellMathOutput"><span id="MathOuputField"></span></div>
 		</div>
 		<!-- /main -->
 
 		<!-- footer -->
 		<div data-role="footer" id="footer" data-position="fixed" data-tap-toggle="false"> <!-- data-tap-toggle="false" -->
             <!-- navbar -->
-		    <div data-role="navbar" id="navbar" data-grid="d">
+		    <div data-role="navbar" id="navbar" data-grid="c">
 			<ul>
 			    <li>
 				<a href="#PopupCode" data-rel="popup" data-position-to="window" class="ui-btn ui-btn-b" data-transition="pop" data-icon="edit"></a>
@@ -45,37 +52,35 @@ https://github.com/OpenBoard-org/OpenBoard/blob/master/resources/library/applica
 				    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-left">Close</a>
 				    <div data-role="header" data-theme="a"><h1>LaTeX</h1></div>
 				    <div role="main" class="ui-content">
-					<textarea data-mini="true" name="textarea-1" class="MathInput" id="MathInput"></textarea>
-					<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" data-transition="flow" onclick="MakeLaTeX();">Ok</a>
+					<textarea data-mini="true" name="textarea-1" class="MathInput" id="MathInputField"></textarea>
+					<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" data-transition="flow" id='OkButton' >Ok</a><!-- onclick="MakeLaTeX();" -->
 				    </div>
 				</div>
 			    </li>
 
 			    <li>
-				<button type="submit" data-theme="b" id="FontSizeDefault" data-icon="back" onclick="FontSizeDefault();"></button>
+				<a href="#" class="ui-btn ui-shadow ui-btn-inline ui-btn-b" data-icon="back" id='FontSizeDefaultButton'></a>
 			    </li>
 
 			    <li>
-				<button type="submit" data-theme="b" id="FontSizeUp" data-icon="arrow-u" onclick="FontSizeUp();"></button>
+				<a href="#" class="ui-btn ui-shadow ui-btn-inline ui-btn-b" data-icon="arrow-u" id='FontSizeUpButton'></a>
 			    </li>
 
 			    <li>
-				<button type="submit" data-theme="b" id="FontSizeDown" data-icon="arrow-d" onclick="FontSizeDown();"></button>
+				<a href="#" class="ui-btn ui-shadow ui-btn-inline ui-btn-b" data-icon="arrow-d" id='FontSizeDownButton'></a>
 			    </li>
-
+<!--
 			    <li>
 				<a href="#PopupInfo" data-rel="popup" data-position-to="window" class="ui-btn ui-btn-b" data-transition="pop" data-icon="info"></a>
 				<div data-role="popup" id="PopupInfo" data-overlay-theme="b" data-theme="a" data-dismissible="false">
 				    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-left">Close</a>
 				    <div data-role="header" data-theme="a"><h1>Info</h1></div>
 				    <div role="main" class="ui-content">
-					<p><span id='id_msg_mode'>?</span></p>
-					<p><span id='id_msg_getparameters'>?</span></p>
-					<p><span id='id_msg_saveparameters'>?</span></p>
+					<p><span id='id_msg_info'>-</span></p>
 				    </div>
 				</div>
 			    </li>
-
+-->
 			</ul>
 		    </div>
 		    <!-- /navbar -->
