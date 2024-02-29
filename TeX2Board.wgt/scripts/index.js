@@ -3,7 +3,7 @@
  * index.js for Tex2Board
  * (C) obooklage 2022
  *
- */ 
+ */
 
 document.addEventListener("DOMContentLoaded", ContentLoaded);
 
@@ -19,7 +19,9 @@ function ContentLoaded()
     try
     {
         if(window.sankore)
+        {
             window.lang = sankore.locale().substring(0,2);
+        }
         else
         {
             const userLocale =
@@ -33,11 +35,11 @@ function ContentLoaded()
     {
             window.lang = "en";
     }
- 
+
     console.log("window.lang="+window.lang);
 
     GetParameters();
-    
+
     if( window.MathInput != "")
     {
         console.log("Set MathInput to "+ window.MathInput);
@@ -51,7 +53,7 @@ function ContentLoaded()
     }
 
     FontSizeSet(window.fontsize);
-    
+
     ButtonsStateSet(window.hiddenbuttons);
 
 }
@@ -68,19 +70,28 @@ function GetParameters()
 {
     console.log("GetParameters");
     /* Restauration */
-    
+
     if (window.sankore)
     {
         if (window.sankore.preference('parameters')=='saved')
         {
+            $("#id_msg_mode").html("GetParameters : Mode Openboard saved");
             window.MathInput = window.sankore.preference('MathInput');
             window.hiddenbuttons = (window.sankore.preference('hiddenbuttons', false) === 'true');
             window.fontsize = parseInt(window.sankore.preference('fontsize', 100));
             console.log("Préférences sankore récupérées.");
         }
+        else
+        {
+            $("#id_msg_mode").html("GetParameters : Mode Openboard NOT saved");
+             /* plante ? Non mais trop rapide
+             showMessage("window.sankore.preference('parameters') != 'saved'");
+              */
+        }
     }
-    else 
-    {    
+    else
+    {
+        $("#id_msg_mode").html("GetParameters : Mode Navigateur");
         if (window.localStorage.getItem('parameters')=='saved')
         {
             window.MathInput = window.localStorage.getItem('MathInput');
@@ -89,15 +100,16 @@ function GetParameters()
             console.log("Préférences localStorage récupérées.");
         }
     }
-    
-    console.log("GetParameters window.MathInput=" + window.MathInput);
+
+    $("#id_msg_getparameters").html("GetParameters : window.MathInput="+ window.MathInput);
+
 }
 
 function SaveParameters()
 {
     console.log("SaveParameters");
     /* Sauvegarde */
-        
+
     window.MathInput = document.getElementById('MathInput').value;
     console.log("SaveParameters window.MathInput=" + window.MathInput);
     if (window.widget)
@@ -107,6 +119,7 @@ function SaveParameters()
         window.sankore.setPreference('hiddenbuttons', window.hiddenbuttons);
         window.sankore.setPreference('fontsize', window.fontsize);
         console.log("Préférences sankore sauvegardées.");
+        $("#id_msg_saveparameters").html("SaveParameters : window.sankore.setPreference="+ window.MathInput);
     }
     else
     {
@@ -115,7 +128,9 @@ function SaveParameters()
         localStorage.setItem('hiddenbuttons', window.hiddenbuttons);
         localStorage.setItem('fontsize', window.fontsize);
         console.log("Préférences localstorage sauvegardées.");
+        $("#id_msg_saveparameters").html("SaveParameters : localStorage.setItem="+ window.MathInput);
     }
+
 }
 
 function MakeSampleCode()
@@ -147,7 +162,7 @@ function SwitchButtonsState()
 {
 
     const navbar = document.getElementById("navbar");
-    
+
     if(window.hiddenbuttons === true)
     {
         navbar.style.display = "block";

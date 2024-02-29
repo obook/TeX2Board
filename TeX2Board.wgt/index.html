@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <!--
-Original code : 
+Original code :
 http://www.mit.edu/afs.new/sipb/project/mathjax/mathjax-git/docs/html/typeset.html
 https://github.com/OpenBoard-org/OpenBoard/blob/master/resources/library/applications/WebBrowser.wgt/index.html
 -->
@@ -37,7 +37,7 @@ https://github.com/OpenBoard-org/OpenBoard/blob/master/resources/library/applica
 		<!-- footer -->
 		<div data-role="footer" id="footer" data-position="fixed" data-tap-toggle="false"> <!-- data-tap-toggle="false" -->
             <!-- navbar -->
-		    <div data-role="navbar" id="navbar" data-grid="c">
+		    <div data-role="navbar" id="navbar" data-grid="d">
 			<ul>
 			    <li>
 				<a href="#PopupCode" data-rel="popup" data-position-to="window" class="ui-btn ui-btn-b" data-transition="pop" data-icon="edit"></a>
@@ -45,30 +45,43 @@ https://github.com/OpenBoard-org/OpenBoard/blob/master/resources/library/applica
 				    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-left">Close</a>
 				    <div data-role="header" data-theme="a"><h1>LaTeX</h1></div>
 				    <div role="main" class="ui-content">
-                        <textarea data-mini="true" name="textarea-1" class="MathInput" id="MathInput"></textarea>
-                        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" data-transition="flow" onclick="MakeLaTeX();">Ok</a>
+					<textarea data-mini="true" name="textarea-1" class="MathInput" id="MathInput"></textarea>
+					<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" data-transition="flow" onclick="MakeLaTeX();">Ok</a>
 				    </div>
 				</div>
 			    </li>
-			    
+
 			    <li>
 				<button type="submit" data-theme="b" id="FontSizeDefault" data-icon="back" onclick="FontSizeDefault();"></button>
 			    </li>
-			    
+
 			    <li>
 				<button type="submit" data-theme="b" id="FontSizeUp" data-icon="arrow-u" onclick="FontSizeUp();"></button>
 			    </li>
-			    
+
 			    <li>
 				<button type="submit" data-theme="b" id="FontSizeDown" data-icon="arrow-d" onclick="FontSizeDown();"></button>
 			    </li>
-			    
+
+			    <li>
+				<a href="#PopupInfo" data-rel="popup" data-position-to="window" class="ui-btn ui-btn-b" data-transition="pop" data-icon="info"></a>
+				<div data-role="popup" id="PopupInfo" data-overlay-theme="b" data-theme="a" data-dismissible="false">
+				    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-left">Close</a>
+				    <div data-role="header" data-theme="a"><h1>Info</h1></div>
+				    <div role="main" class="ui-content">
+					<p><span id='id_msg_mode'>?</span></p>
+					<p><span id='id_msg_getparameters'>?</span></p>
+					<p><span id='id_msg_saveparameters'>?</span></p>
+				    </div>
+				</div>
+			    </li>
+
 			</ul>
 		    </div>
 		    <!-- /navbar -->
 		</div>
 		<!-- /footer -->
-		
+
 	</div>
 	<!-- /page -->
 </body>
