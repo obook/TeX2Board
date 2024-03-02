@@ -11,3 +11,5 @@ Remarque : Pour fonctionner, le widget utilise la bibliothèque logicielle JavaS
 
 <img src="Screenshot_20220922_172625.png" width="640">
 
+Basé sur la documentation https://github.com/OpenBoard-org/OpenBoard/wiki/The-Web-Widgets-API
+
