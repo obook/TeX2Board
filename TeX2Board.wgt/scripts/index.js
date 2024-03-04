@@ -11,6 +11,8 @@
 async function init(){
 
 /* Variables */
+var version = "V3.0 (C) Obook";
+var MathInput = '';
 var defaultfontsize = 100;
 var fontsize = defaultfontsize;
 var navbarvisibility = true;
@@ -18,7 +20,7 @@ var lang = GetLanguage();
 /* Fields */
 var MathInputField = $('#MathInputField');
 var MathOuputField = $('#MathOuputField');
-var MathInput = '';
+var id_msg_info = $('id_msg_info');
 /* Buttons  */
 var OkButton =$('#OkButton');
 var FontSizeDefaultButton = $('#FontSizeDefaultButton');
@@ -28,6 +30,8 @@ var FontSizeDownButton = $('#FontSizeDownButton');
 var navbar = $('#navbar');
 
     ConsoleMessage("init:start");
+
+    $("#id_msg_info").html(version);
 
     function ConsoleMessage(message) {
         console.log(message);
